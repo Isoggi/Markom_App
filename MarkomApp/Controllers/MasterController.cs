@@ -9,17 +9,23 @@ using Microsoft.Extensions.Logging;
 
 namespace MarkomApp.Controllers
 {
-    //[Route("[controller]")]
+    [Route("[controller]")]
     //[ApiController]
     public class MasterController : Controller
     {
+        private readonly ICompanyInterface _company;
+        private readonly IEmployeeInterface _employee;
+        private readonly IUserInterface _user;
         private readonly ILogger<MasterController> _logger;
-        private readonly IMasterInterface _masterInterface;
 
-        public MasterController(IMasterInterface masterInterface, ILogger<MasterController> logger)
+        public MasterController(ILogger<MasterController> logger)
         {
             _logger = logger;
-            _masterInterface = masterInterface;
+        }
+
+        public MasterController(ICompanyInterface company)
+        {
+            _company = company;
         }
 
         // GET: MasterController
@@ -99,7 +105,7 @@ namespace MarkomApp.Controllers
         [Route("{controller}/Company")]
         public ActionResult CompanyIndex()
         {
-            var result = _masterInterface.GetCompanyList();
+            var result = _company.GetCompanyList();
             return View(result);
         }
 

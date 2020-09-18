@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MarkomApp.Models
 {
-    [Table("Company")]
+    [Table("M_COMPANY")]
     public class Company : DeleteChanges
     {
         [Key]

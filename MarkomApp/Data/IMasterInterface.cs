@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace MarkomApp.Data
 {
-    public interface IMasterInterface 
-        : ICompanyInterface, IEmployeeInterface, IRoleinterface, IMenuInterface, 
-        IMenuAccessInterface, IUserInterface, IUnitInterface, ISouvenirInterface,
-        IProductInterface
-    {
+    //public interface IMasterInterface 
+    //    : ICompanyInterface, IEmployeeInterface, IRoleinterface, IMenuInterface, 
+    //    IMenuAccessInterface, IUserInterface, IUnitInterface, ISouvenirInterface,
+    //    IProductInterface
+    //{
         
-    }
+    //}
 
     public interface ICompanyInterface
     {

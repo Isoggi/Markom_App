@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="SQLScript\CREATE TABLE M_USER.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="SQLScript\" />
   </ItemGroup>
 

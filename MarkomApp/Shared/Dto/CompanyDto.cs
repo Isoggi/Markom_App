@@ -8,9 +8,11 @@ namespace MarkomApp.Shared.Dto
 {
     public class CompanyDto : ChangesDto
     {
-        public string Id { get; private set; }
+        public int Id { get; private set; }
         public string Code { get; private set; }
         public string Name { get; private set; }
+        public string Email { get; private set; }
+        public string Phone { get; private set; }
         public string Address { get; private set; }
 
     }
