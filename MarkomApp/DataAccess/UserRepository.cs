@@ -1,42 +1,40 @@
 ﻿using MarkomApp.Data;
 using MarkomApp.Models;
 using MarkomApp.Shared.Dto;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
 using System.Threading.Tasks;
 
 namespace MarkomApp.DataAccess
 {
-    public class CompanyRepository : ICompanyInterface
+    public class UserRepository : IUserInterface
     {
         private DataContext _context;
-        public CompanyRepository(DataContext context)
+        public UserRepository(DataContext context)
         {
             _context = context;
         }
 
-        public List<Company> GetCompanyList()
+        public List<User> GetUserList()
         {
-            List<Company> companies = new List<Company>();
-            companies = _context.Companies.Where(x => x.Id > 0 && !x.IsDelete).ToList();
-            return companies;
+            List<User> users = new List<User>();
+            users = _context.Users.Where(x => x.Id > 0 && !x.IsDelete).ToList();
+            return users;
         }
-        public Company GetCompany(int id) 
+        public User GetUser(int id)
         {
-            Company company = new Company();
-            company = _context.Companies.Where(x => x.Id == id && !x.IsDelete).FirstOrDefault();
-            return company;        
+            User user = new User();
+            user = _context.Users.Where(x => x.Id == id && !x.IsDelete).FirstOrDefault();
+            return user;
         }
 
-        public bool IsExistCompany(CompanyDto company)
+        public bool IsExistUser(UserDto user)
         {
             bool status = false;
             try
             {
-                status = _context.Companies.Any(x => !x.IsDelete && x.Name != company.Name);
+                status = _context.Users.Any(x => !x.IsDelete && x.Username != user.Username);
             }
             catch (Exception)
             {
@@ -47,18 +45,18 @@ namespace MarkomApp.DataAccess
             return status;
         }
 
-        public bool DeleteCompany(int id)
+        public bool DeleteUser(int id)
         {
             bool deleteSuccess = false;
             try
             {
-                Company company = _context.Companies.Where(x => x.Id == id && !(x.IsDelete)).FirstOrDefault();
-                if (company != null && id > 0)
+                User user = _context.Users.Where(x => x.Id == id && !(x.IsDelete)).FirstOrDefault();
+                if (user != null && id > 0)
                 {
                     //_context.Companies.Remove(company);
 
-                    company.IsDelete = true;
-                    _context.Companies.Update(company);
+                    user.IsDelete = true;
+                    _context.Users.Update(user);
                     _context.SaveChanges();
 
                     deleteSuccess = true;
@@ -71,25 +69,22 @@ namespace MarkomApp.DataAccess
             }
             return deleteSuccess;
         }
-        public bool EditCompany(CompanyDto company) 
+        public bool EditUser(UserDto user)
         {
             bool success = false;
 
             try
             {
-                Company entity = GetCompany(company.Id);
+                User entity = GetUser(user.Id);
                 if (entity != null)
                 {
-                    entity.Code = company.Code;
-                    entity.Name = company.Name;
-                    entity.Phone = company.Phone;
-                    entity.Email = company.Email;
-                    entity.Address = company.Address;
+                    entity.Username = user.Username;
+                    entity.Password = user.Password;
 
                     entity.UpdatedBy = "ADM";
                     entity.UpdatedDate = DateTime.Now;
 
-                    _context.Companies.Update(entity);
+                    _context.Users.Update(entity);
                     _context.SaveChanges();
 
                     success = true;
@@ -103,28 +98,26 @@ namespace MarkomApp.DataAccess
 
             return success;
         }
-        public bool AddCompany(CompanyDto company) 
+        public bool AddUser(UserDto user)
         {
             bool success = false;
-            bool isExist = true;
             try
             {
-                isExist = IsExistCompany(company);
+                bool isExist = IsExistUser(user);
                 if (isExist)
                 {
-                    Company entity = new Company
+                    User entity = new User
                     {
-                        Code = company.Code,
-                        Name = company.Name,
-                        Phone = company.Phone,
-                        Email = company.Email,
-                        Address = company.Address,
+                        Username = user.Username,
+                        Password = user.Password,
+                        M_Role_Id = user.M_Role_Id,
+                        M_Employee_Id = user.M_Employee_Id,
                         CreatedBy = "ADM",
                         CreatedDate = DateTime.Now
                     };
 
 
-                    _context.Companies.Add(entity);
+                    _context.Users.Add(entity);
                     _context.SaveChanges();
                 }
             }

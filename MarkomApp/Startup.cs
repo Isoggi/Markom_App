@@ -32,6 +32,7 @@ namespace MarkomApp
                 options.UseSqlServer(Configuration.GetConnectionString("DBConnection"));
             });
             services.AddScoped<ICompanyInterface, CompanyRepository>();
+            services.AddScoped<IUserInterface, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

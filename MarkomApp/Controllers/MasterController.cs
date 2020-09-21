@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MarkomApp.Data;
+using MarkomApp.Shared.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -27,6 +28,14 @@ namespace MarkomApp.Controllers
         {
             _company = company;
         }
+        public MasterController(IUserInterface user)
+        {
+            _user = user;
+        }
+        public MasterController(IEmployeeInterface employee)
+        {
+            _employee = employee;
+        }
 
         // GET: MasterController
         public ActionResult Index()
@@ -34,71 +43,6 @@ namespace MarkomApp.Controllers
             return View();
         }
 
-        // GET: MasterController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: MasterController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-
-
-
-                return RedirectToAction(nameof(Create));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MasterController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: MasterController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: MasterController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: MasterController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         #region Company
         //Get 
@@ -116,18 +60,28 @@ namespace MarkomApp.Controllers
             return View();
         }
 
+        [Route("{controller}/Company/Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CompanyAdd(IFormCollection collection)
+        public ActionResult CompanyAdd(CompanyDto model)
         {
+            bool success = false;
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    success = _company.AddCompany(model);
+                }
             }
             catch
             {
                 return View();
             }
+
+            if (success)
+                return RedirectToAction(nameof(CompanyIndex));
+            else
+                return View();
         }
 
         [Route("{controller}/Company/Edit")]
@@ -135,19 +89,29 @@ namespace MarkomApp.Controllers
         {
             return View();
         }
-
+        
+        [Route("{controller}/Company/Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CompanyEdit(int id, IFormCollection collection)
+        public ActionResult CompanyEdit(CompanyDto model)
         {
+            bool success = false;
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    success = _company.EditCompany(model);
+                }
             }
             catch
             {
                 return View();
             }
+
+            if (success)
+                return RedirectToAction(nameof(CompanyIndex));
+            else
+                return View();
         }
 
         [Route("{controller}/Company/Detail")]
@@ -159,11 +123,11 @@ namespace MarkomApp.Controllers
         [Route("{controller}/Company/Delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CompanyDelete(int id, IFormCollection collection)
+        public ActionResult CompanyDelete(int id)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(CompanyIndex));
             }
             catch
             {
@@ -193,7 +157,7 @@ namespace MarkomApp.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UserIndex));
             }
             catch
             {
@@ -213,7 +177,7 @@ namespace MarkomApp.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UserIndex));
             }
             catch
             {
@@ -234,7 +198,7 @@ namespace MarkomApp.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(UserIndex));
             }
             catch
             {

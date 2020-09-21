@@ -78,8 +78,8 @@ namespace MarkomApp.Data
         List<User> GetUserList();
         User GetUser(int id);
         bool DeleteUser(int id);
-        bool EditUser(MenuAccess menuAccess);
-        bool AddUser(MenuAccess menuAccess);
+        bool EditUser(UserDto menuAccess);
+        bool AddUser(UserDto menuAccess);
         #endregion
     }
 
