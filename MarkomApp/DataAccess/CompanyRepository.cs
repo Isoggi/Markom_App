@@ -24,11 +24,11 @@ namespace MarkomApp.DataAccess
             companies = _context.Companies.Where(x => x.Id > 0 && !x.IsDelete).ToList();
             return companies;
         }
-        public Company GetCompany(int id) 
+        public Company GetCompany(int? id)
         {
             Company company = new Company();
             company = _context.Companies.Where(x => x.Id == id && !x.IsDelete).FirstOrDefault();
-            return company;        
+            return company;
         }
 
         public bool IsExistCompany(CompanyDto company)

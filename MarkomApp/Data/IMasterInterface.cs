@@ -19,7 +19,7 @@ namespace MarkomApp.Data
     {
         #region Company
         List<Company> GetCompanyList();
-        Company GetCompany(int id);
+        Company GetCompany(int? id);
         bool DeleteCompany(int id);
         bool EditCompany(CompanyDto company);
         bool AddCompany(CompanyDto company);
