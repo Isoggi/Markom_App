@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace MarkomApp.Models
 {
+    [Table("M_EMPLOYEE")]
     public class Employee : DeleteChanges
     {
+        
         [Key]
         [MaxLength(11)]
         public int Id { get; set; }
-        [Column(name:"EMPLOYEE_NUMBER")]
+        [Column(name:"Employee_Number")]
         [MaxLength(50)]
         public string Code { get; set; }
         [Column(name: "First_Name")]
@@ -22,6 +24,7 @@ namespace MarkomApp.Models
         [Column(name: "Last_Name")]
         [MaxLength(50)]
         public string LastName { get; set; }
+        [ForeignKey("M_COMPANY")]
         [Column(name: "M_Company_Id")]
         public string MCompanyId { get; set; }
         [MaxLength(50)]

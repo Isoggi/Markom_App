@@ -7,10 +7,10 @@ namespace MarkomApp.Shared.Dto
 {
     public class UserDto : ChangesDto
     {
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public int M_Role_Id { get; set; }
-        public int M_Employee_Id { get; set; }
+        public int Id { get; private set; }
+        public string Username { get; private set; }
+        public string Password { get; private set; }
+        public int MRoleId { get; private set; }
+        public int MEmployeeId { get; private set; }
     }
 }

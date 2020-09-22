@@ -20,10 +20,10 @@ namespace MarkomApp.Models
         public string Password { get; set; }
         [ForeignKey("M_Role_Id")]
         [MaxLength(11)]
-        public int M_Role_Id { get; set; }
+        public int MRoleId { get; set; }
         [ForeignKey("M_Employee_Id")]
         [MaxLength(11)]
-        public int M_Employee_Id { get; set; }
+        public int MEmployeeId { get; set; }
 
     }
 }

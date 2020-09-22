@@ -110,8 +110,8 @@ namespace MarkomApp.DataAccess
                     {
                         Username = user.Username,
                         Password = user.Password,
-                        M_Role_Id = user.M_Role_Id,
-                        M_Employee_Id = user.M_Employee_Id,
+                        MRoleId = user.MRoleId,
+                        MEmployeeId = user.MEmployeeId,
                         CreatedBy = "ADM",
                         CreatedDate = DateTime.Now
                     };
