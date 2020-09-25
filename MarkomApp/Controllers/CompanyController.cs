@@ -12,6 +12,7 @@ using MarkomApp.Shared.Dto;
 
 namespace MarkomApp.Controllers
 {
+    [Route("Master/[controller]")]
     public class CompanyController : Controller
     {
         private readonly ICompanyInterface _company;
@@ -23,21 +24,21 @@ namespace MarkomApp.Controllers
 
         #region Company
         //Get 
-        [Route("{controller}/Company")]
-        public ActionResult CompanyIndex()
+        //[Route("Master/Company")]
+        public ActionResult Index()
         {
             var result = _company.GetCompanyList();
             return View(result);
         }
 
-        [Route("{controller}/Company/Add")]
+        [Route("Master/Company/Add")]
         //[HttpGet("")]
         public ActionResult CompanyAdd()
         {
             return View();
         }
 
-        [Route("{controller}/Company/Add")]
+        [Route("MasterCompany/Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CompanyAdd(CompanyDto model)
@@ -56,18 +57,19 @@ namespace MarkomApp.Controllers
             }
 
             if (success)
-                return RedirectToAction(nameof(CompanyIndex));
+                return RedirectToAction(nameof(Index));
             else
                 return View();
         }
 
-        [Route("{controller}/Company/Edit")]
-        public ActionResult CompanyEdit()
+        [Route("MasterCompany/Edit")]
+        public ActionResult CompanyEdit(int id)
         {
-            return View();
+            Company company = _company.GetCompany(id);
+            return View(company);
         }
 
-        [Route("{controller}/Company/Edit")]
+        [Route("MasterCompany/Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CompanyEdit(CompanyDto model)
@@ -86,25 +88,25 @@ namespace MarkomApp.Controllers
             }
 
             if (success)
-                return RedirectToAction(nameof(CompanyIndex));
+                return RedirectToAction(nameof(Index));
             else
                 return View();
         }
 
-        [Route("{controller}/Company/Detail")]
+        [Route("Master/Company/Detail/")]
         public ActionResult CompanyDetail(int id)
         {
             return View();
         }
 
-        [Route("{controller}/Company/Delete")]
+        [Route("Master/Company/Delete")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CompanyDelete(int id)
         {
             try
             {
-                return RedirectToAction(nameof(CompanyIndex));
+                return RedirectToAction(nameof(Index));
             }
             catch
             {

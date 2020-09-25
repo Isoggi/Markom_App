@@ -62,7 +62,7 @@ namespace MarkomApp
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "master",
-                    pattern: "{controller=Master}/{action?}/{id?}");
+                    pattern: "Master/{controller?}/{action?}/{id?}");
             });
         }
     }

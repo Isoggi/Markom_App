@@ -14,9 +14,9 @@ namespace MarkomApp.Controllers
     //[ApiController]
     public class MasterController : Controller
     {
-        private readonly ICompanyInterface _company;
-        private readonly IEmployeeInterface _employee;
-        private readonly IUserInterface _user;
+        //private readonly ICompanyInterface _company;
+        //private readonly IEmployeeInterface _employee;
+        //private readonly IUserInterface _user;
         private readonly ILogger<MasterController> _logger;
 
         public MasterController(ILogger<MasterController> logger)
@@ -24,18 +24,18 @@ namespace MarkomApp.Controllers
             _logger = logger;
         }
 
-        public MasterController(ICompanyInterface company)
-        {
-            _company = company;
-        }
-        public MasterController(IUserInterface user)
-        {
-            _user = user;
-        }
-        public MasterController(IEmployeeInterface employee)
-        {
-            _employee = employee;
-        }
+        //public MasterController(ICompanyInterface company)
+        //{
+        //    _company = company;
+        //}
+        //public MasterController(IUserInterface user)
+        //{
+        //    _user = user;
+        //}
+        //public MasterController(IEmployeeInterface employee)
+        //{
+        //    _employee = employee;
+        //}
 
         // GET: MasterController
         public ActionResult Index()
@@ -44,76 +44,76 @@ namespace MarkomApp.Controllers
         }
 
 
-        #region User
-        //Get 
-        [Route("{controller}/User")]
-        public ActionResult UserIndex()
-        {
-            return View();
-        }
+        //#region User
+        ////Get 
+        //[Route("{controller}/User")]
+        //public ActionResult UserIndex()
+        //{
+        //    return View();
+        //}
 
-        [Route("{controller}/User/Add")]
-        //[HttpGet("")]
-        public ActionResult UserAdd()
-        {
-            return View();
-        }
+        //[Route("{controller}/User/Add")]
+        ////[HttpGet("")]
+        //public ActionResult UserAdd()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult UserAdd(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(UserIndex));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult UserAdd(IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(UserIndex));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
-        [Route("{controller}/User/Edit")]
-        public ActionResult UserEdit()
-        {
-            return View();
-        }
+        //[Route("{controller}/User/Edit")]
+        //public ActionResult UserEdit()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult UserEdit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(UserIndex));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult UserEdit(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(UserIndex));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
-        [Route("{controller}/User/Detail")]
-        public ActionResult UserDetail(int id)
-        {
-            return View();
-        }
+        //[Route("{controller}/User/Detail")]
+        //public ActionResult UserDetail(int id)
+        //{
+        //    return View();
+        //}
 
-        [Route("{controller}/User/Delete")]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult UserDelete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(UserIndex));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        #endregion
+        //[Route("{controller}/User/Delete")]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult UserDelete(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(UserIndex));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+        //#endregion
 
     }
 }
